@@ -18,6 +18,7 @@ public class App {
 
                 }
                 System.out.println(rowSum(table[k]));
+                //about to implement rowmins from Line 43
             }
 
             
@@ -37,6 +38,17 @@ public class App {
 
         return sum;
 
+    }
+
+    public static int rowMin(int[] rowNums){
+        int min = 9999;
+
+        Arrays.sort(rowNums);
+
+        min = rowNums[0];
+
+
+        return min;
     }
 
 }
