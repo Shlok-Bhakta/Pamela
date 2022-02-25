@@ -33,8 +33,8 @@ public class App {
             for (int l = 0; l < table.length; l++) {
                 rowSum(table[l]);
                 rowMin(table[l]);
-                if (!(l > cols - 1)){
-                    colSum(table, l, rows);
+                if (!(l > rows - 1)){
+                    colSum(table, l);
                     colMax(table, l);
                 }
                     
@@ -68,15 +68,15 @@ public class App {
 
     }
 
-    public static void colSum(int[][] table, int x, int maxcols) {
+    public static void colSum(int[][] table, int colnum) {
         int sum = 0;
         ArrayList<Integer> col = new ArrayList<Integer>();
 
-        for (int zz = 0; zz < table[maxcols].length; zz++) {
+        for(int i = 0; i < table.length; i++) {
+            // check out https://stackoverflow.com/questions/30426909/get-columns-from-two-dimensional-array-in-java
 
-            col.add(table[x][zz]);
 
-        } 
+        }
 
         for (int yy = 0; yy < col.toArray().length; yy++) {
 
@@ -93,7 +93,7 @@ public class App {
 
         for (int zz = 0; zz < table.length; zz++) {
 
-            col.add(table[colnum][zz]);
+            col.add(table[zz][colnum]);
 
         }
 //        System.out.println(col);
