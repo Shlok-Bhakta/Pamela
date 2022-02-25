@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class App {
     // initialization of global vaiables
@@ -33,14 +34,14 @@ public class App {
                 rowSum(table[l]);
                 rowMin(table[l]);
                 if (!(l > cols - 1)){
-                    colSum(table, l);
+                    colSum(table, l, rows);
                     colMax(table, l);
                 }
                     
 
 
             }
-
+            System.out.println(ColMaxs);
             System.out.println("====================");
 
         }
@@ -67,47 +68,46 @@ public class App {
 
     }
 
-    public static void colSum(int[][] table, int colnum) {
+    public static void colSum(int[][] table, int x, int maxcols) {
         int sum = 0;
         ArrayList<Integer> col = new ArrayList<Integer>();
 
-        for (int zz = 0; zz < table.length; zz++) {
+        for (int zz = 0; zz < table[maxcols].length; zz++) {
 
-            col.add(table[zz][colnum]);
+            col.add(table[x][zz]);
 
-        }
+        } 
 
         for (int yy = 0; yy < col.toArray().length; yy++) {
 
             sum = sum + col.get(yy);
         }
-
+        System.out.println(col);
         ColSums.add(sum);
 
     }
 
-    public static void colMax(int [][] table, int colnum){
-        int Max = 0;
+    public static void colMax(int[][] table, int colnum){
+        
         ArrayList<Integer> col = new ArrayList<Integer>();
 
         for (int zz = 0; zz < table.length; zz++) {
 
-            col.add(table[zz][colnum]);
+            col.add(table[colnum][zz]);
 
         }
-
-        int[] temp = toanarray(col);
-        
-
-        ColMaxs.add(temp);
+//        System.out.println(col);
+        Collections.sort(col);
+//        System.out.println(col);
+        ColMaxs.add(col.get(col.size() - 1));
 
     }
     
-    public static int[] toanarray(ArrayList<Integer> input){
+/*     public static int[] toanarray(ArrayList<Integer> input){
         int[] output = new int[input.size()-1];
 
 
-        for(int www = 0;www < input.size(); www++){
+        for(int www = 0;www < input.size()-1; www++){
             output[www] = input.get(www);
         }
 
@@ -116,6 +116,6 @@ public class App {
 
 
 
-    }
+    } */
 
 }
