@@ -1,6 +1,8 @@
 import java.util.Scanner;
 import java.io.File;
 import java.util.Arrays;
+import java.util.ArrayList;
+
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(new File("pamela.dat"));
@@ -15,10 +17,17 @@ public class App {
             for(int k = 0; k < table.length; k++) {
                 for(int j = 0; j < table[k].length; j++) {
                         table[k][j] = scanner.nextInt();
-
+                        
                 }
-                System.out.println(rowSum(table[k]));
-                //about to implement rowmins from Line 43
+
+                
+
+            }
+            for(int l = 0; l < table.length; l++) {
+                //System.out.println(rowSum(table[k]));
+                //System.out.println(rowMin(table[k]));
+                System.out.println(colSum(table, l));
+
             }
 
             
@@ -49,6 +58,27 @@ public class App {
 
 
         return min;
+    }
+    public static int colSum(int[][] table, int colnum){
+        int sum = 0;
+        ArrayList<Integer> col = new ArrayList<Integer>();
+
+        for(int zz = 0; zz < table.length; zz++){
+
+            col.add(table[zz][colnum]);
+            
+            
+
+        }
+
+
+        System.out.println(col);
+
+
+
+        return sum;
+
+
     }
 
 }
