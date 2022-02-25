@@ -4,6 +4,14 @@ import java.util.Arrays;
 import java.util.ArrayList;
 
 public class App {
+    // initialization of global vaiables
+    public static ArrayList<Integer> RowSums = new ArrayList<Integer>();
+    public static ArrayList<Integer> RowMins = new ArrayList<Integer>();
+    public static ArrayList<Integer> ColSums = new ArrayList<Integer>();
+    public static ArrayList<Integer> ColMaxs = new ArrayList<Integer>();
+    public static int MinMins = 0;
+    public static int MaxMaxs = 0;
+
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(new File("pamela.dat"));
         int loop = scanner.nextInt();
@@ -22,30 +30,16 @@ public class App {
 
             }
             for (int l = 0; l < table.length; l++) {
-                 System.out.print(rowSum(table[l]));
-                
-                }     
-                System.out.println();
+                rowSum(table[l]);
+                rowMin(table[l]);
+                if (!(l > cols - 1)){
+                    colSum(table, l);
+                    colMax(table, l);
+                }
+                    
 
 
-
-                for (int l = 0; l < table.length; l++) {
-                    System.out.print(rowMin(table[l]));
-                   
-                   }     
-                   System.out.println();
-
-
-                   for (int l = 0; l < table.length; l++) {
-                    if(!(l > cols-1)){
-                        System.out.print(colSum(table, l));
-                    }
-                   
-                   }    
-                   System.out.println();
-                
-
-            
+            }
 
             System.out.println("====================");
 
@@ -53,27 +47,27 @@ public class App {
 
     }
 
-    public static int rowSum(int[] rowNums) {
+    public static void rowSum(int[] rowNums) {
         int sum = 0;
         for (int i = 0; i < rowNums.length; i++) {
             sum = sum + rowNums[i];
         }
 
-        return sum;
+        RowSums.add(sum);
 
     }
 
-    public static int rowMin(int[] rowNums) {
+    public static void rowMin(int[] rowNums) {
         int min = 9999;
 
         Arrays.sort(rowNums);
 
         min = rowNums[0];
+        RowMins.add(min);
 
-        return min;
     }
 
-    public static int colSum(int[][] table, int colnum) {
+    public static void colSum(int[][] table, int colnum) {
         int sum = 0;
         ArrayList<Integer> col = new ArrayList<Integer>();
 
@@ -82,13 +76,45 @@ public class App {
             col.add(table[zz][colnum]);
 
         }
-        
+
         for (int yy = 0; yy < col.toArray().length; yy++) {
-            
+
             sum = sum + col.get(yy);
         }
 
-        return sum;
+        ColSums.add(sum);
+
+    }
+
+    public static void colMax(int [][] table, int colnum){
+        int Max = 0;
+        ArrayList<Integer> col = new ArrayList<Integer>();
+
+        for (int zz = 0; zz < table.length; zz++) {
+
+            col.add(table[zz][colnum]);
+
+        }
+
+        int[] temp = toanarray(col);
+        
+
+        ColMaxs.add(temp);
+
+    }
+    
+    public static int[] toanarray(ArrayList<Integer> input){
+        int[] output = new int[input.size()-1];
+
+
+        for(int www = 0;www < input.size(); www++){
+            output[www] = input.get(www);
+        }
+
+
+        return output;
+
+
 
     }
 
