@@ -29,22 +29,21 @@ public class App {
             System.out.println("Case: " + (i + 1));
             for (int k = 0; k < table.length; k++) {
                 for (int j = 0; j < table[k].length; j++) {
-                    table[k][j] = scanner.nextInt();
-                    TABLE.a
+                    int num = scanner.nextInt();
+                    table[k][j] = num;
+                    TABLE.add(num);
                 }
                 
             }
             
             for (int l = 0; l < table.length; l++) {
-                rowSum(table[l]);
-                rowMin(table[l]);
-                for(int k = 0; k < table.length; k++) {
-                    colSum(table, l);
-                    colMax(table, l);
-                }
-
+/*                 rowSum(table[l]);
+                rowMin(table[l]); */
                 
-                    
+                    colSum(l, cols, rows);
+                    colMax(table, l);
+                
+
             }
             
 
@@ -74,17 +73,28 @@ public class App {
 
     }
 
-    public static void colSum(int[][] tables, int colnum) {
-        System.out.println(Arrays.toString(tables[colnum]));
+    public static void colSum(int colnum, int length, int width) {
+        
         
         int sum = 0;
+        int counter = 0;
         ArrayList<Integer> col = new ArrayList<Integer>();
-        int[] colM = new int[tables.length];
-        for(int i = 0; i <= tables.length-1; i++) {
-          colM[i] = tables[colnum][i];
+        int[][] table = new int[width][length];
+        for (int k = 0; k < table.length; k++) {
+            for (int j = 0; j < table[k].length; j++) {
+                
+                table[k][j] = TABLE.get(counter);
+                counter++;
+                System.out.println(Arrays.toString(table[colnum]));
+            }
+            
+        }
+        
+         for(int i = 0; i <= table.length; i++) {
+          col.add(table[i][colnum]);
 
         }
-        //System.out.println(Arrays.toString(colM));
+        System.out.println(col); 
         for (int yy = 0; yy < col.size(); yy++) {
 
             sum = sum + col.get(yy);
