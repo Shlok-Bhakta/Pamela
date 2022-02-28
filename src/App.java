@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class App {
+    
+    
+    
     // initialization of global vaiables
+    public static ArrayList<Integer> TABLE = new ArrayList<Integer>();
     public static ArrayList<Integer> RowSums = new ArrayList<Integer>();
     public static ArrayList<Integer> RowMins = new ArrayList<Integer>();
     public static ArrayList<Integer> ColSums = new ArrayList<Integer>();
@@ -26,22 +30,24 @@ public class App {
             for (int k = 0; k < table.length; k++) {
                 for (int j = 0; j < table[k].length; j++) {
                     table[k][j] = scanner.nextInt();
-
+                    TABLE.a
                 }
-
+                
             }
+            
             for (int l = 0; l < table.length; l++) {
                 rowSum(table[l]);
                 rowMin(table[l]);
-                if (!(l > rows - 1)){
+                for(int k = 0; k < table.length; k++) {
                     colSum(table, l);
                     colMax(table, l);
                 }
+
+                
                     
-
-
             }
-            System.out.println(ColMaxs);
+            
+
             System.out.println("====================");
 
         }
@@ -68,21 +74,22 @@ public class App {
 
     }
 
-    public static void colSum(int[][] table, int colnum) {
+    public static void colSum(int[][] tables, int colnum) {
+        System.out.println(Arrays.toString(tables[colnum]));
+        
         int sum = 0;
         ArrayList<Integer> col = new ArrayList<Integer>();
-
-        for(int i = 0; i < table.length; i++) {
-            // check out https://stackoverflow.com/questions/30426909/get-columns-from-two-dimensional-array-in-java
-
+        int[] colM = new int[tables.length];
+        for(int i = 0; i <= tables.length-1; i++) {
+          colM[i] = tables[colnum][i];
 
         }
-
-        for (int yy = 0; yy < col.toArray().length; yy++) {
+        //System.out.println(Arrays.toString(colM));
+        for (int yy = 0; yy < col.size(); yy++) {
 
             sum = sum + col.get(yy);
         }
-        System.out.println(col);
+        
         ColSums.add(sum);
 
     }
@@ -111,7 +118,7 @@ public class App {
             output[www] = input.get(www);
         }
 
-
+        
         return output;
 
 
