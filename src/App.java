@@ -5,11 +5,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class App {
-    
-    
-    
+
     // initialization of global vaiables
-    public static ArrayList<Integer> TABLE = new ArrayList<Integer>();
+
     public static ArrayList<Integer> RowSums = new ArrayList<Integer>();
     public static ArrayList<Integer> RowMins = new ArrayList<Integer>();
     public static ArrayList<Integer> ColSums = new ArrayList<Integer>();
@@ -31,22 +29,41 @@ public class App {
                 for (int j = 0; j < table[k].length; j++) {
                     int num = scanner.nextInt();
                     table[k][j] = num;
-                    TABLE.add(num);
+
                 }
-                
+
             }
-            
+
             for (int l = 0; l < table.length; l++) {
-/*                 rowSum(table[l]);
-                rowMin(table[l]); */
-                
-                    colSum(l, cols, rows);
-                    colMax(table, l);
-                
+                /*
+                 * rowSum(table[l]);
+                 * rowMin(table[l]);
+                 */
+                {
+                    int sum = 0;
+                    ArrayList<Integer> col = new ArrayList<Integer>();
+                    for (int ii = 0; ii < table.length; ii++) {
+                        col.add(table[ii][l]);
+
+                    }
+                    System.out.println(col.size());
+                    for (int yy = 0; yy < col.size(); yy++) {
+
+                        sum = sum + col.get(yy);
+                    }
+
+                    ColSums.add(sum);
+                }
 
             }
-            
+            System.out.println(ColSums);
 
+            RowSums.clear();
+            RowMins.clear();
+            ColSums.clear();
+            ColMaxs.clear();
+            MinMins = 0;
+            MaxMaxs = 0;
             System.out.println("====================");
 
         }
@@ -73,39 +90,40 @@ public class App {
 
     }
 
-    public static void colSum(int colnum, int length, int width) {
-        
-        
-        int sum = 0;
-        int counter = 0;
-        ArrayList<Integer> col = new ArrayList<Integer>();
-        int[][] table = new int[width][length];
-        for (int k = 0; k < table.length; k++) {
-            for (int j = 0; j < table[k].length; j++) {
-                
-                table[k][j] = TABLE.get(counter);
-                counter++;
-                System.out.println(Arrays.toString(table[colnum]));
-            }
-            
-        }
-        
-         for(int i = 0; i <= table.length; i++) {
-          col.add(table[i][colnum]);
+    /*
+     * public static void colSum(int colnum, int length, int width) {
+     * 
+     * int sum = 0;
+     * int counter = 0;
+     * ArrayList<Integer> col = new ArrayList<Integer>();
+     * int[][] table = new int[width][length];
+     * for (int k = 0; k < table.length; k++) {
+     * for (int j = 0; j < table[k].length; j++) {
+     * 
+     * table[k][j] = TABLE.get(counter);
+     * counter++;
+     * System.out.println(Arrays.toString(table[colnum]));
+     * }
+     * 
+     * }
+     * 
+     * for (int i = 0; i <= table.length; i++) {
+     * col.add(table[i][colnum]);
+     * 
+     * }
+     * System.out.println(col);
+     * for (int yy = 0; yy < col.size(); yy++) {
+     * 
+     * sum = sum + col.get(yy);
+     * }
+     * 
+     * ColSums.add(sum);
+     * 
+     * }
+     */
 
-        }
-        System.out.println(col); 
-        for (int yy = 0; yy < col.size(); yy++) {
+    public static void colMax(int[][] table, int colnum) {
 
-            sum = sum + col.get(yy);
-        }
-        
-        ColSums.add(sum);
-
-    }
-
-    public static void colMax(int[][] table, int colnum){
-        
         ArrayList<Integer> col = new ArrayList<Integer>();
 
         for (int zz = 0; zz < table.length; zz++) {
@@ -113,26 +131,28 @@ public class App {
             col.add(table[zz][colnum]);
 
         }
-//        System.out.println(col);
+        // System.out.println(col);
         Collections.sort(col);
-//        System.out.println(col);
+        // System.out.println(col);
         ColMaxs.add(col.get(col.size() - 1));
 
     }
-    
-/*     public static int[] toanarray(ArrayList<Integer> input){
-        int[] output = new int[input.size()-1];
 
-
-        for(int www = 0;www < input.size()-1; www++){
-            output[www] = input.get(www);
-        }
-
-        
-        return output;
-
-
-
-    } */
+    /*
+     * public static int[] toanarray(ArrayList<Integer> input){
+     * int[] output = new int[input.size()-1];
+     * 
+     * 
+     * for(int www = 0;www < input.size()-1; www++){
+     * output[www] = input.get(www);
+     * }
+     * 
+     * 
+     * return output;
+     * 
+     * 
+     * 
+     * }
+     */
 
 }
